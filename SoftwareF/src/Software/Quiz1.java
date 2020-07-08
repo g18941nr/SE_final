@@ -52,22 +52,39 @@ public class Quiz1 {
 		double sd1 = standardDeviation(aveKamoku[1], score_1);
 		double sd2 = standardDeviation(aveKamoku[2], score_2);
 		
+		double[] sd = { sd0, sd1, sd2 };		
 		
-		
-		System.out.println("0's average score is " + averageArr[0]);
-		System.out.println("1's average score is " + averageArr[1]);
-		System.out.println("2's average score is " + averageArr[2]);
+		System.out.println("0番目の人の平均点 " + averageArr[0]);
+		System.out.println("1番目の人の平均点 " + averageArr[1]);
+		System.out.println("2番目の人の平均点 " + averageArr[2]);
 		
 		System.out.println("科目0の平均点："+aveKamoku[0]);
 		System.out.println("科目1の平均点："+aveKamoku[1]);
 		System.out.println("科目2の平均点："+aveKamoku[2]);
 
+		//偏差値
+		System.out.println("0番目の人");
+		for (int i = 0; i < score_0.length; i++) {
+			double dv = deviationValue(sd[0], aveKamoku[0], score_0[i]);
+			System.out.println("科目" + i + "の偏差値 " + dv);
+		}
+		System.out.println("1番目の人");
+		for (int i = 0; i < score_1.length; i++) {
+			double dv = deviationValue(sd[1], aveKamoku[1], score_1[i]);
+			System.out.println("科目" + i + "の偏差値 " + dv);
+		}
+		System.out.println("2番目の人");
+		for (int i = 0; i < score_2.length; i++) {
+			double dv = deviationValue(sd[2], aveKamoku[2], score_2[i]);
+			System.out.println("科目" + i + "の偏差値 " + dv);
+		}
+
 		//平均値が最高点、最低点の人をそれぞれ判定し、表示する(Quiz1-(ii))
 		int id_maxScore = searchPersonWithMaxScore(averageArr);
 		int id_minScore = searchPersonWithMinScore(averageArr);
 
-		System.out.println("Person who gained max score is: "+ id_maxScore);
-		System.out.println("Person who gained minimum score is: "+ id_minScore);
+		System.out.println("平均値が最高点の人 "+ id_maxScore);
+		System.out.println("平均値が最低点の人 "+ id_minScore);
 	}
 
 
@@ -122,7 +139,7 @@ public class Quiz1 {
 		}		
 		return stu_id;		
 	}
-	
+	 
 	//標準偏差を計算する
 	public static double standardDeviation(double aveKamoku, int[] score) {
 		double sum = 0;
@@ -132,6 +149,12 @@ public class Quiz1 {
 		double bunsan = sum / score.length;
 		double sd = Math.sqrt(bunsan);
 		return sd;
+	}
+	 //偏差値を計算する
+	public static double deviationValue(double sd, double ave, int score) {
+		double dv = (score - ave)*10 / sd + 50;
+		return dv;
+		
 	}
 	
 }
