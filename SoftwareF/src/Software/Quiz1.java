@@ -2,6 +2,8 @@ package Software;
 
 public class Quiz1 {
 	public static void main (String [] args) {
+		
+		//科目0は国語、科目1は数学、科目2は英語
 		int [] score_0, score_1, score_2;
 		score_0 = new int [3];
 		score_1 = new int [3];
@@ -54,35 +56,43 @@ public class Quiz1 {
 		
 		double[] sd = { sd0, sd1, sd2 };		
 		
-		System.out.println("0番目の人の平均点 " + averageArr[0]);
-		System.out.println("1番目の人の平均点 " + averageArr[1]);
-		System.out.println("2番目の人の平均点 " + averageArr[2]);
+		System.out.println("0番目の人の平均点 " + ((double)Math.round(averageArr[0] * 100)) / 100);
+		System.out.println("1番目の人の平均点 " + ((double)Math.round(averageArr[1] * 100)) / 100);
+		System.out.println("2番目の人の平均点 " + ((double)Math.round(averageArr[2] * 100)) / 100);
 		
-		System.out.println("科目0の平均点："+aveKamoku[0]);
-		System.out.println("科目1の平均点："+aveKamoku[1]);
-		System.out.println("科目2の平均点："+aveKamoku[2]);
-
+		System.out.println("");
+		
+		String[] Kamoku = { "国語" , "数学" , "英語" };
+		for(int i=0; i<Kamoku.length; i++) {
+		System.out.println(Kamoku[i] +"の平均点："+((double)Math.round(aveKamoku[i] * 100)) / 100);
+		
+		}
+		System.out.println("");
+		
 		//偏差値
 		System.out.println("0番目の人");
 		for (int i = 0; i < score_0.length; i++) {
 			double dv = deviationValue(sd[0], aveKamoku[0], score_0[i]);
-			System.out.println("科目" + i + "の偏差値 " + dv);
+			System.out.println(Kamoku[i] + "の偏差値 " + ((double)Math.round(dv * 100)) / 100);
 		}
+		System.out.println("");
 		System.out.println("1番目の人");
 		for (int i = 0; i < score_1.length; i++) {
 			double dv = deviationValue(sd[1], aveKamoku[1], score_1[i]);
-			System.out.println("科目" + i + "の偏差値 " + dv);
+			System.out.println(Kamoku[i] + "の偏差値 " + ((double)Math.round(dv * 100)) / 100);
 		}
+		System.out.println("");
 		System.out.println("2番目の人");
 		for (int i = 0; i < score_2.length; i++) {
 			double dv = deviationValue(sd[2], aveKamoku[2], score_2[i]);
-			System.out.println("科目" + i + "の偏差値 " + dv);
+			System.out.println(Kamoku[i] + "の偏差値 " + ((double)Math.round(dv * 100)) / 100);
 		}
 
 		//平均値が最高点、最低点の人をそれぞれ判定し、表示する(Quiz1-(ii))
 		int id_maxScore = searchPersonWithMaxScore(averageArr);
 		int id_minScore = searchPersonWithMinScore(averageArr);
 
+		System.out.println("");
 		System.out.println("平均値が最高点の人 "+ id_maxScore);
 		System.out.println("平均値が最低点の人 "+ id_minScore);
 	}
